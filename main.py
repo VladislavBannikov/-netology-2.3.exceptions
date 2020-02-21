@@ -39,6 +39,6 @@ while True:
         break
     res = calc(expr.split())
     if res:
-        print(f"{expr} = {calc(expr.split())}")
+        print(f"{expr} = {res}")
 
 
