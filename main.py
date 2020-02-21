@@ -1,6 +1,7 @@
+valid_operations = ('+', "-", "*", "/")
+
 
 def calc(expr):
-    valid_operations = ('+', "-", "*", "/")
     result = ""
     try:
         assert len(expr) == 3, "Wrong expression or number of parameters."
@@ -9,6 +10,8 @@ def calc(expr):
 
         numb1 = int(expr[1])
         numb2 = int(expr[2])
+        assert numb1 > 0 and numb2 > 0, "Operands should be positive numbers"
+
         if op == "+":
             result = numb1 + numb2
         elif op == "-":
@@ -18,24 +21,24 @@ def calc(expr):
         elif op == "/":
             result = numb1 / numb2
     except ZeroDivisionError:
-        print("ZeroDivisionError")
+        print("ERROR. ZeroDivisionError")
     except AssertionError as e:
-        print(f"AssertionError: {e}")
+        print(f"ERROR. AssertionError: {e}")
     except ValueError as e:
-        print(f"ValueError: {e}")
+        print(f"ERROR. ValueError: {e}")
     except Exception as e:
-        print(f"Another exception: {e}")
+        print(f"ERROR. Another exception: {e}")
 
     return result
 
 
 while True:
-    # expr = input("Enter expression in polish notation or \"Q\" to exit:\n" ).strip()
-    # expr = "- 3  %"
-    expr = "/ 3  0"
-    # expr = "- 3  6 6"
+    expr = input("===Enter expression in polish notation or \"Q\" to exit:\n").strip()
     if expr in ["q", "Q"]:
+        print("Goodbye")
         break
-    print(calc(expr.split()))
-    break
+    res = calc(expr.split())
+    if res:
+        print(f"{expr} = {calc(expr.split())}")
+
 
